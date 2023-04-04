@@ -1,0 +1,56 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center text-secondary">GESTION DE LOS PARTICIPANTES</h2>
+<br>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-success">
+                    <thead >
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Foto de Perfil</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Contraseña</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data%}
+                        <tr class="">
+                            <td>{{d.id_usuario}}</td>
+                            <td>{{d.apellido_p}} {{d.apellido_m}}</td>
+                            <td>{{d.nombre}}</td>
+                            <td>{{d.usuario}}</td>
+                            <td>foto: {{d.usuario}}</td>
+                            <td>{{d.correo_elec}}</td>
+                            <td>{{d.celular}}</td>
+                            <td>direccion</td>
+                            <td>{{d.contrasena}}</td>
+                            <td>Eliminar</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

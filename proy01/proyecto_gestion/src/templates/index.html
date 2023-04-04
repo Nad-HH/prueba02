@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block body %}
+
+
+ <!-- Imagenes (carrusel) -->
+ {% for d in data%}
+ <div id="carouselExampleFade" class="carousel slide carousel-fade">
+    <div class="carousel-inner" data-bs-ride="carousel">
+      <div class="carousel-item active"  data-bs-interval="3000">
+        <img  src="/img/{{d.portada1}} " class="d-block w-100" alt="slide1">
+      </div>
+
+      <div class="carousel-item"  data-bs-interval="3000">
+        <img src="/img/{{d.portada2}} " class="d-block w-100" alt="slide2">
+      </div>
+
+      <div class="carousel-item"  data-bs-interval="3000"> 
+        <img src="/img/{{d.portada3}} " class="d-block w-100" alt="slide3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  {% endfor%}
+
+<!-- Intro -->
+{% for d in data%}
+<section class="w-50 mx-auto text-center pt-3" id="intro"> 
+<h1 class="p-3 fs-2 border-top border-3">¡Descubre nuevos horizontes!<span class="text-success-emphasis"> Certificate con nosotros</span></h1>
+<p class="p-3 fs-4 text-light-emphasis"> {{d.descripcion}} </p>
+</section>
+{% endfor%}
+
+
+<!-- eventos -->
+
+<h2 class=" mx-auto text-center text-success ">EVENTOS</h2>
+
+<section class="container-fluid">
+<div class="row w-75 mx-auto  servicio-fila">
+
+  <div class="col-lg-6 col-md-12 col-sm-12 d-flex my-5 icono-wrap">
+    <img src="{{url_for('static',filename='img/eve1.jpg') }}" alt="eve1" width="240" height="280">
+    <div>
+      <h3 class="fs-5 mt-4 px-4 pb-1">Evento1</h3>
+      <p class="px-4">Descripciòn de evento1</p>
+      <span class="px-4 text-success-emphasis"> Fecha: ##/##/##</span>
+      <span class="px-4 text-success-emphasis"> Hora: </span>
+      <span class="px-4 text-success-emphasis"> Lugar: </span>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 d-flex my-5 icono-wrap">
+    <img src="{{url_for('static',filename='img/eve2.jpg') }}" alt="eve2" width="240" height="280">
+    <div>
+      <h3 class="fs-5 mt-4 px-4 pb-1">Evento2</h3>
+      <p class="px-4">Descripciòn de evento2</p>
+      <span class="px-4 text-success-emphasis"> Fecha: ##/##/##</span>
+      <span class="px-4 text-success-emphasis"> Hora: </span>
+      <span class="px-4 text-success-emphasis"> Lugar: </span>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 d-flex my-5 icono-wrap">
+    <img src="{{url_for('static',filename='img/eve3.jpg') }}" alt="eve3" width="240" height="280">
+    <div>
+      <h3 class="fs-5 mt-4 px-4 pb-1">Evento3</h3>
+      <p class="px-4">Descripciòn de evento3</p>
+      <span class="px-4 text-success-emphasis"> Fecha: ##/##/##</span>
+      <span class="px-4 text-success-emphasis"> Hora: </span>
+      <span class="px-4 text-success-emphasis"> Lugar: </span>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 d-flex my-5 icono-wrap">
+    <img src="{{url_for('static',filename='img/eve4.jpg') }}" alt="eve4" width="240" height="280">
+    <div>
+      <h3 class="fs-5 mt-4 px-4 pb-1">Evento4</h3>
+      <p class="px-4">Descripciòn de evento4</p>
+      <span class="px-4 text-success-emphasis"> Fecha: ##/##/##</span>
+      <span class="px-4 text-success-emphasis"> Hora: </span>
+      <span class="px-4 text-success-emphasis"> Lugar: </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="text-center">
+  <a href="/evento.html"> <button type="button" class="btn btn-outline-success">MAS EVENTOS</button></a>
+</div>
+</section>
+
+<!-- ACERCA DE NOSOTROS -->
+{% for d in data%}
+<section >
+<div class="w-75 m-auto text-center pt-5" id="equipo">
+  <h1 class="mb-5 fs-2 text-success text-center pt-4 border-top border-3">¿Quienes somos?</h1>
+  <p class="fs-4"><span class="text-success-emphasis ">MISIÓN. </span>
+    {{d.mision}}</p>
+  <p class="fs-4"><span class="text-success-emphasis">VISIÓN. </span>
+    {{d.vision}}
+  </p>
+  <p class="fs-4"><span class="text-success-emphasis">OBJETIVO. </span>
+    {{d.objetivo}}
+  </p>
+</div>
+{%endfor%}
+<div class="mt-5 text-center">
+  <img class="img-fluid" src="{{url_for('static',filename='img/mision.jpg') }}" alt="equipo" width="540" height="680">
+</div>
+<br>
+<!-- MAPA -->
+<div id="local" class="border-top border-2">
+  <div class="mapa"></div>
+  <div>
+    {% for d in data%}
+    <div class="wrapper">
+      <h2>Ubicado en Bolivia, La Paz</h2>
+      <p class="fs-5 text-body">
+        Contacto: {{d.celular}}
+        <br>
+        E-mail: {{d.correo_el}}
+        <br>
+        Dirección : {{d.direccion}}
+      </p>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+
+</section>
+   
+
+{% endblock %}
+
+

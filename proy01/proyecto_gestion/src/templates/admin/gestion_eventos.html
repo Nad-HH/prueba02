@@ -1,0 +1,235 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center text-secondary">GESTION DE LOS EVENTOS ACADÉMICOS</h2>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Datos del Evento
+                </div>
+                <div class="card-body">
+                    <form action="/admin/gestion_eventos/guardar" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label for="txttituloevento" class="form-label">Titulo:</label>
+                            <input type="text"
+                                class="form-control" name="txttituloevento" id="txttituloevento" aria-describedby="helpId" placeholder="Escriba el nombre del Evento">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txttipoevento" class="form-label">Tipo:</label>
+                            <input type="text"
+                                class="form-control" name="txttipoevento" id="txttipoevento" aria-describedby="helpId" placeholder="Escriba el tipo del Evento">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtcapmaxevento" class="form-label">Capacidad Max:</label>
+                            <input type="text"
+                                class="form-control" name="txtcapmaxevento" id="txtcapmaxevento" aria-describedby="helpId" placeholder="Ej: 45 ">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtprecioevento" class="form-label">Precio:</label>
+                            <input type="text"
+                                class="form-control" name="txtprecioevento" id="txtprecioevento" aria-describedby="helpId" placeholder="Ej: 345">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtdescevento" class="form-label">Descripcion:</label>
+                            <input type="text"
+                                class="form-control" name="txtdescevento" id="txtdescevento" aria-describedby="helpId" placeholder="Ej: 345">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtareaevento" class="form-label">Area:</label>
+                            <input type="text"
+                                class="form-control" name="txtareaevento" id="txtareaevento" aria-describedby="helpId" placeholder="Ej: Informatica, Quimica, etc">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtfechaevento" class="form-label">Fecha:</label>
+                            <input type="date"
+                                class="form-control" name="txtfechaevento" id="txtfechaevento" aria-describedby="helpId" placeholder="Escriba el nombre del Evento">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtimagenevento" class="form-label">Imagen:</label>
+                            <input type="file"
+                                class="form-control" name="txtimagenevento" id="txtimagenevento" aria-describedby="helpId" placeholder="Seleccione la imagen">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Agregar</button>      
+
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive">
+                <table class="table table-success">
+                    <thead >
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Capacidad Max</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Portada</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evento in eventos %}
+                        <tr class="">
+                            <td>{{evento[0]}}</td>
+                            <td>{{evento[5]}}</td>
+                            <td>{{evento[1]}}</td>
+                            <td>{{evento[3]}}</td>
+                            <td>{{evento[4]}}</td>
+                            <td>{{evento[6]}}</td>
+                            <td>{{evento[7]}}</td>
+                            <td>{{evento[8]}}</td>
+                            <td>
+                                <img widht="60" src="/img/{{evento[2]}}" class="img-fluid rounded-top" alt="">
+                                <br>
+                                {{evento[2]}}
+                                <br>
+                                <button class="btn btn-primary btn-sm" id="btn-edit{{evento[0]}}" data-bs-toggle="modal" data-bs-target="#Imodal{{evento[0]}}">
+                                    Editar
+                                </button>
+
+                            </td>
+                            <td>
+                                <form action="/admin/gestion_eventos/borrar" method="post">
+                                    <input value="{{evento[0]}}" type="hidden" name="txtID" id="txtID">
+                                    <button type="submit" class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </form>
+                                <button class="btn btn-primary btn-sm" id="btn-edit{{evento[0]}}" data-bs-toggle="modal" data-bs-target="#modal{{evento[0]}}">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{evento[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{evento[5]}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/admin/gestion_eventos/editar/{{evento[0]}}" method="POST" enctype="multipart/form-data">
+                                        
+                                            <label for="txttituloevento" class="form-label">Titulo:</label>
+                                            <input type="text"
+                                                class="form-control" name="txttituloevento" id="txttituloevento" value="{{evento[5]}}">
+                                        
+                
+                                        
+                                            <label for="txttipoevento" class="form-label">Tipo:</label>
+                                            <input type="text"
+                                                class="form-control" name="txttipoevento" id="txttipoevento" value="{{evento[1]}}">
+                                        
+                
+                                       
+                                            <label for="txtcapmaxevento" class="form-label">Capacidad Max:</label>
+                                            <input type="text"
+                                                class="form-control" name="txtcapmaxevento" id="txtcapmaxevento" value="{{evento[3]}}">
+                                        
+                
+                                        
+                                            <label for="txtprecioevento" class="form-label">Precio:</label>
+                                            <input type="text"
+                                                class="form-control" name="txtprecioevento" id="txtprecioevento" value="{{evento[4]}}">
+                                        
+                
+                                        
+                                            <label for="txtdescevento" class="form-label">Descripcion:</label>
+                                            <input type="text"
+                                                class="form-control" name="txtdescevento" id="txtdescevento" value="{{evento[6]}}">
+                                        
+                
+                                       
+                                            <label for="txtareaevento" class="form-label">Area:</label>
+                                            <input type="text"
+                                                class="form-control" name="txtareaevento" id="txtareaevento" value="{{evento[7]}}">
+                                   
+                
+                                       
+                                            <label for="txtfechaevento" class="form-label">Fecha:</label>
+                                            <input type="date"
+                                                class="form-control" name="txtfechaevento" id="txtfechaevento" value="{{evento[8]}}">
+                                 
+            
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                 </form>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Modal de imagen -->
+
+
+                        <div class="modal fade" id="Imodal{{evento[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{evento[5]}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/admin/gestion_eventos/editar_imagen/{{evento[0]}}" method="POST" enctype="multipart/form-data">
+                                       
+                                            <label for="img_evento" class="form-label">Imagen:</label>
+                                            <input type="file"
+                                                class="form-control" name="img_evento" id="img_evento" value="{{evento[2]}}" name="{{evento[2]}}" >
+                                       
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                  </form>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

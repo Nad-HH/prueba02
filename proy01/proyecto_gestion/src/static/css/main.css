@@ -1,0 +1,103 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    overflow-x:hidden;
+    background-color: #F2F1EC;
+
+}
+
+
+/*   menu */
+
+#menu a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #F2F1EC;
+}
+
+/*   carrusel */
+
+.carousel-inner {
+    max-height: 40rem;;
+}
+/*
+.carousel-item {
+    height: 900px;
+}
+*/
+
+/* seccion nuestro equipo - MAPA */
+
+.mapa{
+    background: url(../img/mapa.png);
+    width:800px;
+    height:500px;
+}
+
+#local{
+    background: #f3f3f3;
+    padding-bottom: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 50%;
+    margin-left: 100px;
+    padding-top: 150px;
+}
+
+/*   footer - pie de pagina */
+footer {
+    background: #365B6D; /*1b2a4e*/
+    min-height: 100px;
+}
+footer p {
+    color:#f3f3f3;
+    text-align: center;
+}
+
+#iconos i{
+    font-size: 26px;
+    padding: 0 8px;
+    color: #f3f3f3;
+}
+
+/*   media queries pantalla sm */
+
+@media (max-width:768px){
+    #intro, #equipo {
+        width: 90% !important;
+    }
+ /*   #equipo p{
+        display: none;
+    }
+*/
+    .servicio-fila {
+        width: 100% !important;
+        text-align: center;
+    }
+
+}
+
+/*   media queries pantalla extra- sm */
+
+@media (max-width:576px){
+    .icono-wrap{
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+}
+
+/*   media queries pantalla ancha */
+@media(max-width:1200px){
+    #local {
+        flex-wrap: wrap;
+        padding-top: 30px;
+    }
+    .wrapper {
+        width: 90%;
+        margin: auto;
+        padding: 50px;
+    }
+
+}

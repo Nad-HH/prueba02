@@ -1,0 +1,220 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center text-secondary">GESTION DE LA INFORMACIÓN WEB</h2>
+<br>
+
+<div class="container">
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Area</th>
+            <th scope="col">Descripciòn</th>
+          </tr>
+        </thead>
+        {% for informacion_web in infor_web %}
+        <tbody>
+          <tr>
+            <th scope="row">Nombre</th>
+            <td>{{informacion_web[6]}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Descripciòn</th>
+            <td>{{informacion_web[2]}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Logo</th>
+            <td class="text-center">
+              <img width="10%"  src="/img/{{informacion_web[7]}}" class="img-fluid rounded-top" alt="">
+              <br>
+              {{informacion_web[7]}}
+            </td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Imagen Carrusel</th>
+            <td class="text-center">
+              <img width="20%"  src="/img/{{informacion_web[8]}}" class="img-fluid rounded-top" alt="">
+              <br>
+              {{informacion_web[8]}}
+              <br>
+              <img  width="20%"  src="/img/{{informacion_web[9]}}" class="img-fluid rounded-top" alt="">
+              <br>
+              {{informacion_web[9]}}
+              <br>
+              <img  width="20%" src="/img/{{informacion_web[10]}}" class="img-fluid rounded-top" alt="">
+              <br>
+              {{informacion_web[10]}}
+            </td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Mision</th>
+            <td>{{informacion_web[3]}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Vision</th>
+            <td>{{informacion_web[4]}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Objetivo</th>
+            <td>{{informacion_web[5]}}</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">Dirección</th>
+            <td>{{informacion_web[1]}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Contacto</th>
+            <td>{{informacion_web[13]}}</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">Correo Electronico</th>
+            <td>{{informacion_web[14]}}</td>
+    
+          </tr>
+        </tbody>
+       
+
+
+
+
+        
+      </table>
+
+      <div class="container">
+        <button class="btn btn-success btn-sm" id="btn-edit{{informacion_web[0]}}" data-bs-toggle="modal" data-bs-target="#modal{{informacion_web[0]}}">
+          Editar Información
+        </button>
+        <button class="btn btn-success btn-sm" id="btn-edit{{informacion_web[0]}}" data-bs-toggle="modal" data-bs-target="#Imodal{{informacion_web[0]}}">
+          Editar Imagenes
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modal{{informacion_web[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar informacion_web</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/informacion_web/editar/{{informacion_web[0]}}" method="POST" enctype="multipart/form-data">
+                    
+                        <label for="txtnombre" class="form-label">Nombre:</label>
+                        <input type="text"
+                            class="form-control" name="txtnombre" id="txtnombre" value="{{informacion_web[6]}}">
+                    
+
+                    
+                        <label for="txtdesc" class="form-label">Descripcion:</label>
+                        <input type="text"
+                            class="form-control" name="txtdesc" id="txtdesc" value="{{informacion_web[2]}}">
+                    
+
+                   
+                        <label for="txtmision" class="form-label">Mision:</label>
+                        <input type="text"
+                            class="form-control" name="txtmision" id="txtmision" value="{{informacion_web[3]}}">
+                    
+
+                    
+                        <label for="txtvision" class="form-label">Vision:</label>
+                        <input type="text"
+                            class="form-control" name="txtvision" id="txtvision" value="{{informacion_web[4]}}">
+                    
+
+                    
+                        <label for="txtobj" class="form-label">Objetivos:</label>
+                        <input type="text"
+                            class="form-control" name="txtobj" id="txtobj" value="{{informacion_web[5]}}">
+                    
+
+                   
+                        <label for="txtdirec" class="form-label">Dirección:</label>
+                        <input type="text"
+                            class="form-control" name="txtdirec" id="txtdirec" value="{{informacion_web[1]}}">
+               
+
+                   
+                        <label for="txtcontacto" class="form-label">Contacto:</label>
+                        <input type="text"
+                            class="form-control" name="txtcontacto" id="txtcontacto" value="{{informacion_web[13]}}">
+                  
+
+                        <label for="txtcorreo" class="form-label">Correo Electronico:</label>
+                        <input type="text"
+                            class="form-control" name="txtcorreo" id="txtcorreo" value="{{informacion_web[14]}}">
+                 
+
+                    
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+             </form>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal de imagen -->
+
+
+    <div class="modal fade" id="Imodal{{informacion_web[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar imagenes del logo:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="/admin/informacion_web/editar_img/{{informacion_web[0]}}" method="POST" enctype="multipart/form-data">
+                 
+                      <label for="img_logo" class="form-label">Logo:</label>
+                      <input type="file"
+                          class="form-control" name="img_logo" id="img_logo" value="{{informacion_web[7]}}" name="{{informacion_web[7]}}" >
+
+                      <label for="img_portada1" class="form-label">Portada 1:</label>
+                        <input type="file"
+                          class="form-control" name="img_portada1" id="img_portada1" value="{{informacion_web[8]}}" name="{{informacion_web[8]}}" >
+                 
+                      <label for="img_portada2" class="form-label">Portada 2:</label>
+                        <input type="file"
+                          class="form-control" name="img_portada2" id="img_portada2" value="{{informacion_web[9]}}" name="{{informacion_web[9]}}" >
+                       
+                      <label for="img_portada3" class="form-label">Portada 3:</label>
+                        <input type="file"
+                          class="form-control" name="img_portada3" id="img_portada3" value="{{informacion_web[10]}}" name="{{informacion_web[10]}}" >
+                     
+                  
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+      </div>
+      </div>
+  </div>
+
+      
+    {% endfor %}
+</div>
+
+
+{% endblock %}

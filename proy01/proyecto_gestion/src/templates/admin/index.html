@@ -1,0 +1,33 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Bienvenido <strong>{{ session["usuario"] }}</strong> al administrador del sitio web</h1>
+      <p class="col-md-8 fs-4"> Aqui puede realizar las siguientes acciones: </p>
+      
+      <p class="lead text-center">
+        <a class="btn btn-secondary btn-lg" href="informacion_web" role="button">Gestionar la información General</a>
+        <br>
+        <a class="btn btn-secondary btn-lg mt-3" href="gestion_eventos" role="button">Gestionar los Eventos</a>
+        <br>
+        <a class="btn btn-secondary btn-lg mt-3" href="gestion_participantes" role="button">Gestionar a los Participantes</a>
+        <br>
+        <a class="btn btn-secondary btn-lg mt-3" href="gestion_control" role="button">Gestionar al Personal de Control</a>
+        <br>
+        <a class="btn btn-secondary btn-lg mt-3" href="gestion_expositor" role="button">Gestionar al Personal Expositor</a>
+        
+      </p>
+     
+    </div>
+  </div>
+
+
+{% endblock %}

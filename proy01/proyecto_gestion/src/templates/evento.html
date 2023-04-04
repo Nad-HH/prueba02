@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class=" mx-auto text-center text-success ">EVENTOS ACADÉMICOS</h2>
+
+    <div class="row w-75 mx-auto  servicio-fila">
+        {% for evento in eventos_acad %}
+        <div class="col-md-4">
+            <div class="card ">
+                <img class="card-img-top" widht="60" src="/img/{{ evento[2] }}" alt="Title">
+                <div class="card-body">
+                    <h4 class="card-title">{{ evento[5] }}</h4>
+                    <p class="card-text">
+                        {{ evento[6] }}
+                        <br>
+                        <a name="" id="" class="btn btn-outline-success" href="#" role="button">Ver mas</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+  
+<br>
+{% endblock %}
